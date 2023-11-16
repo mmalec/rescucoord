@@ -3,7 +3,7 @@ export interface Osoba {
     id_zwiazku_taktycznego:string;
     id_pojazdu:string;
     id_zdarzenia:string;
-    lista_zdrazen:string[]; //ostatnie zdarzenie na liscie jest bieżące
+    lista_zdrazen:string[]; //ostatnie zdarzenie na liscie jest bieżące czyli ostanie nawe jesli zakończone
 
     Imie:String;
     Nazwisko:string;
@@ -12,5 +12,5 @@ export interface Osoba {
     Województwo:string;
     Telefon:number;
     Email:string;
-    Mobile:Number;
+    Mobiles:Number;
 }
