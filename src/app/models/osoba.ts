@@ -12,4 +12,5 @@ export interface Osoba {
     Województwo:string;
     Telefon:number;
     Email:string;
+    Mobile:Number;
 }
