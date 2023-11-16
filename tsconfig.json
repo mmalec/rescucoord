@@ -7,7 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -18,7 +18,11 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "allowSyntheticDefaultImports":true,
+    "strictPropertyInitialization": false,
     "useDefineForClassFields": false,
+    "noImplicitAny": false,
+    
     "lib": [
       "ES2022",
       "dom"
@@ -28,6 +32,9 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
   }
 }

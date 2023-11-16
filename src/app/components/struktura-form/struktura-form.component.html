@@ -1,0 +1,23 @@
+<p>struktura-form works!</p>
+<p-treeTable [value]="dataTree" styleClass="p-datatable-sm" [scrollable]="true" [tableStyle]="{'min-width':'50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Type</th>
+            <th>ID</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr [ttRow]="rowNode">
+            <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{ rowData.name }}
+            </td>
+            <td>{{ rowData.id}}</td>
+            <td>{{ rowData.name }}</td>
+            <td>{{ rowData.parentid }}</td>
+        </tr>
+    </ng-template>
+</p-treeTable>
+

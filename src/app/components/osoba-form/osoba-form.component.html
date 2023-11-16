@@ -1,0 +1,71 @@
+<p>osoba-form works!</p>
+
+
+<form [formGroup]="osobaForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+
+
+    <!-- Pola ukryte lub bez walidacji -->
+    <div class="field grid">
+      <output for="_id" styleClass="col-fixed" style="width:100px" value="Firstname"></output>
+      <input type="text" class="col" formControlName="_id" value={{osobaForm.invalid}}>
+    </div>
+    <div class="field grid">
+      <input type="text" class="col" placeholder="ID Związku Taktycznego" formControlName="id_zwiazku_taktycznego">
+    </div>
+    <div class="field grid">
+      <input type="text" class="col" placeholder="ID Pojazdu" formControlName="id_pojazdu">
+    </div>
+    <div class="field grid">
+      <input type="text" class="col" placeholder="ID Zdarzenia" formControlName="id_zdarzenia">
+    </div>
+
+
+    <!-- Lista zdarzeń (jeśli potrzebujesz wyświetlić) -->
+    <div formArrayName="lista_zdrazen">
+      <div *ngFor="let zdarzenie of listaZdrazen.controls; let i = index">
+        <input [formControlName]="i" placeholder="Zdarzenie">
+        <button (click)="usunZdarzenie(i)">Usuń</button>
+      </div>
+      <button (click)="dodajZdarzenie()">Dodaj Zdarzenie</button>
+    </div>
+    <!-- ... -->
+
+    <!-- Pola z walidacją -->
+    <div class="flex flex-column gap-2">
+    <label htmlFor="Imie">Imię</label>
+    <div class="col">
+      <input pInputText   type="text" placeholder="Imię" formControlName="Imie" required>
+      <div
+        *ngIf="osobaForm.controls['Imie'].invalid && (osobaForm.controls['Imie'].dirty || osobaForm.controls['Imie'].touched)">
+        <div  class="alert alert-danger" *ngIf="osobaForm.controls['Imie'].errors?.['required']">Imię jest wymagane</div>
+      </div>
+    </div>
+    </div>
+
+    <input pInputText   type="text" placeholder="Nazwisko" formControlName="Nazwisko" required>
+    <div
+      *ngIf="osobaForm.controls['Nazwisko'].invalid && (osobaForm.controls.Nazwisko.dirty || osobaForm.controls.Nazwisko.touched)">
+      <div class="p-error"  *ngIf="osobaForm.controls.Nazwisko.errors?.['required']">Nazwisko jest wymagane</div>
+    </div>
+
+    <input type="text" placeholder="Stopień" formControlName="Stopien">
+    <input type="text" placeholder="Jednostka" formControlName="Jednosta">
+    <input type="text" placeholder="Województwo" formControlName="Województwo">
+
+    <input type="text" placeholder="Telefon" formControlName="Telefon">
+    <div
+      *ngIf="osobaForm.controls.Telefon.invalid && (osobaForm.controls.Telefon.dirty || osobaForm.controls.Telefon.touched)">
+      <div *ngIf="osobaForm.controls.Telefon.errors.pattern">Niepoprawny numer telefonu</div>
+    </div>
+
+    <input type="text" placeholder="Email" formControlName="Email">
+    <div
+      *ngIf="osobaForm.controls.Email.invalid && (osobaForm.controls.Email.dirty || osobaForm.controls.Email.touched)">
+      <div *ngIf="osobaForm.controls.Email.errors.email">Niepoprawny adres email</div>
+    </div>
+
+    <div></div>
+    <p-button type="submit" [disabled]="osobaForm.invalid">Wyślij</p-button>
+  </div>
+</form>
