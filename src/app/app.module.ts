@@ -10,24 +10,24 @@ import {PanelModule} from 'primeng/panel'
 import { SharedModule,  } from 'primeng/api';
 import { TreeTableModule } from 'primeng/treetable';
 
-
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangesComponent } from './components/changes/changes.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OsobaFormComponent } from './components/osoba-form/osoba-form.component';
 import { StrukturaFormComponent } from './components/struktura-form/struktura-form.component';
-
+import { MenubarComponent } from './components/menubar/menubar.component';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChangesComponent,
     OsobaFormComponent,
-    StrukturaFormComponent
+    StrukturaFormComponent,
+    MenubarComponent,
+
   
   ],
   imports: [
@@ -41,7 +41,8 @@ import { StrukturaFormComponent } from './components/struktura-form/struktura-fo
     InputTextModule,
     PanelModule,
     SharedModule, 
-    TreeTableModule
+    TreeTableModule,
+    MenubarModule
 
   ],
   providers: [],
