@@ -9,6 +9,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel'
 import { SharedModule,  } from 'primeng/api';
 import { TreeTableModule } from 'primeng/treetable';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToolbarModule } from 'primeng/toolbar'; 
+import {ToastModule} from 'primeng/toast'; 
+import {ConfirmDialogModule} from 'primeng/confirmdialog'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +27,9 @@ import { StrukturaFormComponent } from './components/struktura-form/struktura-fo
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
+import { TabelaDanychComponent } from './components/tabela-danych/tabela-danych.component';
+import { SearchFilterPipe } from './search-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +38,9 @@ import { MenuItem } from 'primeng/api';
     OsobaFormComponent,
     StrukturaFormComponent,
     MenubarComponent,
+    TabelaDanychComponent,
+    SearchFilterPipe
+    
 
   
   ],
@@ -42,10 +56,18 @@ import { MenuItem } from 'primeng/api';
     PanelModule,
     SharedModule, 
     TreeTableModule,
-    MenubarModule
+    MenubarModule,
+    ToolbarModule,
+    ToastModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule
+    
+    
+   
 
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +68,12 @@ export class PouchdbService {
 
   }
 
+  async getData() {
+    let result = await this.db.allDocs({ include_docs: true });
+    return result.rows.map(row => row.doc);
+  }
+
+
 
   getDB() {
     return this.db;
@@ -83,14 +89,17 @@ export class PouchdbService {
 
   // ...
 
-  getChanges(): void {
-    console.log('Działa getChanges');
-    this.db.changes({
-      since: 'now',
-      live: true
-    }).on('change', (change) => {
-      this.dataChangeSubject.next(change);
+  public getChanges() {
+    return new Observable(observer => {
+      this.db.changes({
+        since: 'now',
+        live: true,
+        include_docs: true
+      }).on('change', change => {
+        observer.next(change);
+      }).on('error', error => {
+        observer.error(error);
+      });
     });
   }
-
 }

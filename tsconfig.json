@@ -22,6 +22,7 @@
     "strictPropertyInitialization": false,
     "useDefineForClassFields": false,
     "noImplicitAny": false,
+    "strictNullChecks":false,
     
     "lib": [
       "ES2022",
@@ -36,5 +37,6 @@
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
+    "strictDomEventTypes": false
   }
 }

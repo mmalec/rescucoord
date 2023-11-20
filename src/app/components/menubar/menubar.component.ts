@@ -44,6 +44,16 @@ export class MenubarComponent implements  OnInit{
                     }
                 ]
             },
+            {label: 'Osoby',
+            icon: 'pi pi-fw pi-peccil',
+            routerLink: ['/osoby']
+            },
+            {  label: 'Zestawienie danych',
+            icon: 'pi pi-fw pi-peccil',
+            routerLink: ['/zestawienie']
+
+
+            },
             {
                 label: 'Edit',
                 icon: 'pi pi-fw pi-pencil',
