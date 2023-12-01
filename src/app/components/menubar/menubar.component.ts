@@ -14,12 +14,13 @@ export class MenubarComponent implements  OnInit{
     ngOnInit() {
         this.items = [
             {
-                label: 'File',
+                label: 'Ustawienia',
                 icon: 'pi pi-fw pi-file',
                 items: [
                     {
-                        label: 'New',
+                        label: 'Srtuktura',
                         icon: 'pi pi-fw pi-plus',
+                        routerLink: '/struktura',
                         items: [
                             {
                                 label: 'Bookmark',

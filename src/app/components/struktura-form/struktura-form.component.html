@@ -1,23 +1,19 @@
 <p>struktura-form works!</p>
-<p-treeTable [value]="dataTree" styleClass="p-datatable-sm" [scrollable]="true" [tableStyle]="{'min-width':'50rem'}">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Type</th>
-            <th>ID</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-        <tr [ttRow]="rowNode">
-            <td>
-                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                {{ rowData.name }}
-            </td>
-            <td>{{ rowData.id}}</td>
-            <td>{{ rowData.name }}</td>
-            <td>{{ rowData.parentid }}</td>
-        </tr>
-    </ng-template>
-</p-treeTable>
 
+<div class=" flex justify-content-center">
+    <p-tree class="w-full md:w-10rem" [value]="dataTree" [draggableNodes]="true" [droppableNodes]="true"
+        draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)">
+
+        <ng-template let-node pTemplate="default">
+            <span *ngIf="!node.isEditing">{{ node.label }}</span>
+            <input pInputText  *ngIf="node.isEditing" type="text" [(ngModel)]="node.label" (blur)="stopEditing(node)"
+                (keydown.enter)="stopEditing(node)" />
+             <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
+             <span *ngIf="czyLeaf(node)==false"> Samotny</span> 
+
+            <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "  *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
+            <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>
+        </ng-template>
+
+    </p-tree>
+</div>

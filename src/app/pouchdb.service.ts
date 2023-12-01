@@ -11,7 +11,7 @@ export class PouchdbService {
   private dataChangeSubject = new Subject<any>();
 
   constructor() {
-    var opts = { auth: { username: 'admin', password: 'admin' } };
+    var opts = { auth: { username: 'skkw', password: 'sztab' } };
     this.db = new PouchDB('sztab');
 
   }
@@ -19,7 +19,7 @@ export class PouchdbService {
 
 
   syncWithCouchDB(): void {
-    const remoteCouchDB = 'http://admin:admin@localhost:5984/sztab';
+    const remoteCouchDB = 'http://skkw:sztab@srv22.mikr.us:20222/sztab';
     this.db.sync(remoteCouchDB, {
       live: true,
       retry: true,
@@ -27,10 +27,21 @@ export class PouchdbService {
     }).on('change', (info) => {
       console.log("Synchronizaja z couchdb OK");
       this.getChanges();
+      // Zmiana została zareplikowana
+      const lastSyncTime = new Date();
+      localStorage.setItem('lastSync', lastSyncTime.toISOString());
 
       // Obsługuje zmiany podczas synchronizacji
     }).on('error', (err) => {
       console.error("Błąd synchronizacji:", err);
+    }).on('paused', (err) => {
+      // replication paused (e.g., replication up to date, user went offline)
+    }).on('active', () => {
+      // replicate resumed (e.g., new changes replicating, user went back online)
+    }).on('denied', (err) => {
+      // a document failed to replicate (e.g., due to permissions)
+    }).on('complete', (info) => {
+      // handle complete
     });
   }
   /* oryginalna funkcja z pierwszego generowania
@@ -53,10 +64,10 @@ export class PouchdbService {
     return this.db.allDocs({
       include_docs: true,
       attachments: true
-    }).then(function ( res) {
-      
+    }).then(function (res) {
+
       console.log("Result..." + res);
-       //res.json({'users':res});
+      //res.json({'users':res});
       return res;
     }).catch(function (err) {
       console.log(err);

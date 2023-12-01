@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { PouchdbService } from 'src/app/pouchdb.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {Renderer2} from  '@angular/core';
+import { Table, TableBody } from 'primeng/table';
 
 
 
@@ -16,6 +18,7 @@ export class TabelaDanychComponent implements OnInit {
 
   cols: any[];
   data: any[];
+  visibleTable: boolean = true;
 
 
   productDialog: boolean = false;
@@ -29,24 +32,83 @@ export class TabelaDanychComponent implements OnInit {
   submitted: boolean = false;
 
   statuses!: any[];
+
+  @ViewChild('dt') table: Table;
   
-  constructor(private db: PouchdbService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private renderer: Renderer2, private db: PouchdbService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   async ngOnInit(): Promise<void> {
     console.log("działa on init")
     const rawData = await this.db.getData();
     console.log('Znaleciono ' + rawData)
-    this.cols = Object.keys(rawData[0]).map(key => ({ field: key, header: key }));
-    this.data = rawData;
+    this.cols = Object.keys( rawData[0]).map(key => ({ field: key, header: key }));
+    this.data =  rawData;
 
 
     
   this.db.getChanges().subscribe(change => {
-    console.log('Zmiany w tabeli do obsłużenia');
+    console.log('Zmiany w tabeli do obsłużenia');  
+    this.db.fetchData().then(fetchedData => {
+      this.data = fetchedData.rows.map(row => row.doc);
+    })
+    //this.updateTable(change);
+    //console.log("change " + JSON.stringify(change))
     
-    //this.updateTable(change.doc);
   });
   }
+
+  trackBy(index: number, item: any): number {
+    return item._id; // lub inny unikalny identyfikator elementu
+  }
+
+  updateTable(doc: any) {
+
+   
+   
+    const index =  this.data.findIndex(row => row._id === doc._id);
+  
+    console.log('szczegóły doc '+JSON.stringify(doc))
+    // Jeśli dokument został usunięty z bazy danych
+    if (doc.doc._deleted) {
+      console.log('usuniety doc index '+index)
+      this.data.splice(index, 1);
+      this.updateVisibilityTable()
+    }
+
+    if (index > -1) {
+      // Jeśli dokument istnieje w tabeli, aktualizuj go
+      this.data[index] = doc;
+      this.updateVisibilityTable()
+    } else {
+      // Jeśli to nowy dokument, dodaj go do tabeli
+      this.data.push(doc);
+      this.updateVisibilityTable()
+      this.refreshTable()
+    }
+  
+  
+    // Aktualizuj dane tabeli w PrimeNG
+   // this.data = [...this.data];
+    this.updateVisibilityTable();
+    //this.refreshTable();
+  }
+
+
+  updateVisibilityTable(): void {
+    console.log('updateVisibilityTable Aktualizacja tabeli')
+  //this.visibleTable = false;
+    //setTimeout(() => this.visibleTable = true, 20);
+    //this.table.reset()
+    
+
+    
+  }
+
+  refreshTable(){
+   // console.log('refreshTable: dzoala')
+    //const dataTableRef = this.renderer.selectRootElement(this.table.el.nativeElement, true);
+    //dataTableRef.focus();
+}
 
 
 

@@ -18,10 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangesComponent } from './components/changes/changes.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OsobaFormComponent } from './components/osoba-form/osoba-form.component';
 import { StrukturaFormComponent } from './components/struktura-form/struktura-form.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
@@ -29,6 +30,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { TabelaDanychComponent } from './components/tabela-danych/tabela-danych.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { SyncInfoComponent } from './components/sync-info/sync-info.component';
+import { TreeModule } from 'primeng/tree';
+
 
 
 @NgModule({
@@ -39,7 +43,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
     StrukturaFormComponent,
     MenubarComponent,
     TabelaDanychComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SyncInfoComponent
     
 
   
@@ -60,7 +65,10 @@ import { SearchFilterPipe } from './search-filter.pipe';
     ToolbarModule,
     ToastModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TreeModule,
+    FormsModule,
+    ButtonModule
     
     
    
