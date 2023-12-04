@@ -14,15 +14,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import {ToastModule} from 'primeng/toast'; 
 import {ConfirmDialogModule} from 'primeng/confirmdialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
-
+import { DialogModule } from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangesComponent } from './components/changes/changes.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { OsobaFormComponent } from './components/osoba-form/osoba-form.component';
 import { StrukturaFormComponent } from './components/struktura-form/struktura-form.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
@@ -32,7 +29,13 @@ import { TabelaDanychComponent } from './components/tabela-danych/tabela-danych.
 import { SearchFilterPipe } from './search-filter.pipe';
 import { SyncInfoComponent } from './components/sync-info/sync-info.component';
 import { TreeModule } from 'primeng/tree';
-
+import { ZarzadzanieProjektamiComponent } from './components/zarzadzanie-projektami/zarzadzanie-projektami.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CheckboxModule } from "primeng/checkbox";
+import { SplitterModule } from 'primeng/splitter';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { AngularSplitModule } from 'angular-split';
+import { DragDropModule } from 'primeng/dragdrop';
 
 
 @NgModule({
@@ -44,7 +47,9 @@ import { TreeModule } from 'primeng/tree';
     MenubarComponent,
     TabelaDanychComponent,
     SearchFilterPipe,
-    SyncInfoComponent
+    SyncInfoComponent,
+    ZarzadzanieProjektamiComponent,
+    
     
 
   
@@ -68,7 +73,14 @@ import { TreeModule } from 'primeng/tree';
     BrowserAnimationsModule,
     TreeModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
+    InputTextareaModule,
+    CheckboxModule,
+    SplitterModule,
+    ScrollPanelModule,
+    AngularSplitModule,
+    DragDropModule
     
     
    

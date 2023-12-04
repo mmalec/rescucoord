@@ -6,6 +6,10 @@ import {Tree} from 'primeng/tree';
 import { TreeDragDropService, TreeNode } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { SplitterModule } from 'primeng/splitter';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { AngularSplitModule } from 'angular-split';
+import { DragDropModule } from 'primeng/dragdrop';
 
 
 
@@ -14,11 +18,21 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './struktura-form.component.html',
   styleUrls: ['./struktura-form.component.scss'],
   providers: [TreeDragDropService],
+  
  
 
 })
 
 export class StrukturaFormComponent implements OnInit {
+dragEnd() {
+
+}
+dragStart(arg0: any) {
+
+}
+drop(arg0: any) {
+
+}
   sqlquery1: any[];
   dataTree: TreeNode[];
   jsonData: any[];

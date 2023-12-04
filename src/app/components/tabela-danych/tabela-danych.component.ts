@@ -72,18 +72,18 @@ export class TabelaDanychComponent implements OnInit {
     if (doc.doc._deleted) {
       console.log('usuniety doc index '+index)
       this.data.splice(index, 1);
-      this.updateVisibilityTable()
+     // this.updateVisibilityTable()
     }
 
     if (index > -1) {
       // Jeśli dokument istnieje w tabeli, aktualizuj go
       this.data[index] = doc;
-      this.updateVisibilityTable()
+      //this.updateVisibilityTable()
     } else {
       // Jeśli to nowy dokument, dodaj go do tabeli
       this.data.push(doc);
-      this.updateVisibilityTable()
-      this.refreshTable()
+     // this.updateVisibilityTable()
+      //this.refreshTable()
     }
   
   

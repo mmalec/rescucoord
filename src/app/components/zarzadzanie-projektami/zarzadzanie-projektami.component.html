@@ -1,0 +1,182 @@
+
+<div class="card">
+<p-toast></p-toast>
+
+<p-toolbar styleClass="mb-4 gap-2">
+  <ng-template pTemplate="left">
+    <button
+      pButton
+      pRipple
+      label="New"
+      icon="pi pi-plus"
+      class="p-button-success mr-2"
+      (click)="openNew()"
+    ></button>
+  </ng-template>
+
+  <ng-template pTemplate="right">
+   
+</ng-template>
+</p-toolbar>
+
+<div *ngIf="true">
+  <p-table
+    [value]="data"
+    #dt_projekt
+    [rows]="100"
+    [paginator]="true"
+    [globalFilterFields]="['nazwa', 'opis', 'kod_dostepu']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedRows"
+    [rowHover]="true"
+    dataKey="_id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-flex p-align-items-center justify-content-between">
+        <button
+          pButton
+          pRipple
+          label="Delete"
+          icon="pi pi-trash"
+          class="p-button-danger"
+          (click)="deleteSelectedRows()"
+          [disabled]="!selectedRows || !selectedRows.length"
+        ></button>
+
+        <h5 class="m-0">Manage Products</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              dt_projekt.filterGlobal($any($event.target).value, 'contains')
+            "
+            placeholder="Szukaj..."
+          />
+        </span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="Nazwa">
+          Nazwa
+          <!-- Tutaj możesz dodać pola do przeszukiwania itd. -->
+          <p-sortIcon field="{nazwa}"></p-sortIcon>
+        </th>
+        <th pSortableColumn="Opis">
+          Opis
+          <!-- Tutaj możesz dodać pola do przeszukiwania itd. -->
+          <p-sortIcon field="{opis}"></p-sortIcon>
+        </th>
+        <th pSortableColumn="Kod dostępu">
+          Kod dostępu
+          <!-- Tutaj możesz dodać pola do przeszukiwania itd. -->
+          <p-sortIcon field="{kod_dostepu}"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td>
+          {{ rowData.nazwa }}
+        </td>
+        <td>
+          {{ rowData.opis }}
+        </td>
+        <td>
+          {{ rowData.kod_dostepu }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="Edycja danych dot. projektu"
+  [(visible)]="projektDialog"
+  [style]="{ width: '40vw' }"
+  [modal]="true"
+>
+  <div class="p-fluid">
+    <form [formGroup]="projektForm" (ngSubmit)="submitForm()">
+      {{ projektForm.get("nazwa").value }}
+
+      <!-- <div class="p-field" >
+                    <label for="_id">ID</label>
+                    <input class="form-control-plaintext"  type="text" pInputText formControlName="_id" readonly="true">
+                {{projektForm.get('_id').value}}
+                </div>
+
+                
+                <div class="p-field" >
+                    <label for="_id_projektu">ID Projektu</label>
+                    <input class="p-form-control" readonly="true" type="text" pInputText formControlName="_id_projektu" [readOnly]="true">
+                </div>
+                <div class="p-field">
+                    <label for="type">Typ</label>
+                    <input type="text" pInputText formControlName="type" readonly="true">
+                </div>
+            -->
+
+      <div class="p-field">
+        <label for="nazwa">Nazwa</label>
+        <input type="text" pInputText formControlName="nazwa" />
+        <small
+          class="p-error"
+          *ngIf="
+            projektForm.get('nazwa').invalid && projektForm.get('nazwa').touched
+          "
+        >
+          Nazwa jest wymagana.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="opis">Opis</label>
+        <input id="opis" pInputTextarea formControlName="opis" />
+      </div>
+
+      <div class="p-field">
+        <label for="kod_dostepu">Kod Dostępu</label>
+        <input type="text" pInputText formControlName="kod_dostepu" />
+        <small
+          class="p-error"
+          *ngIf="
+            projektForm.get('kod_dostepu').invalid &&
+            projektForm.get('kod_dostepu').touched
+          "
+        >
+          Kod dostepu jest wymagany.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="haslo">Hasło</label>
+        <input type="password" pInputText formControlName="haslo" />
+      </div>
+
+      <div class="p-field-checkbox">
+        <p-checkbox [binary]="true" formControlName="czy_aktywny"></p-checkbox>
+        <label for="czy_aktywny">Czy Aktywny</label>
+      </div>
+      <br />
+      <button
+        type="submit"
+        pButton
+        label="Zapisz"
+        [disabled]="!projektForm.valid"
+      ></button>
+    </form>
+  </div>
+</p-dialog>
+</div>

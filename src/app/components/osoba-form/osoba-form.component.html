@@ -34,7 +34,7 @@
     <!-- Pola z walidacją -->
     <div class="flex flex-column gap-2">
     <label htmlFor="Imie">Imię</label>
-    <div class="col">
+    <div class="field">
       <input pInputText   type="text" placeholder="Imię" formControlName="Imie" required>
       <div
         *ngIf="osobaForm.controls['Imie'].invalid && (osobaForm.controls['Imie'].dirty || osobaForm.controls['Imie'].touched)">

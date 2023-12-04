@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {  MenuItem } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-menubar',
-  templateUrl: './menubar.component.html',
-  styleUrls: ['./menubar.component.scss']
+    selector: 'app-menubar',
+    templateUrl: './menubar.component.html',
+    styleUrls: ['./menubar.component.scss']
 })
 
-export class MenubarComponent implements  OnInit{
-  items: MenuItem[] | undefined;
+export class MenubarComponent implements OnInit {
+    items: MenuItem[] | undefined;
 
 
     ngOnInit() {
         this.items = [
             {
-                label: 'Ustawienia',
-                icon: 'pi pi-fw pi-file',
+                label: 'Zarzadzanie ',
+                icon: 'pi pi-fw pi-cog',
                 items: [
                     {
                         label: 'Srtuktura',
@@ -33,8 +33,10 @@ export class MenubarComponent implements  OnInit{
                         ]
                     },
                     {
-                        label: 'Delete',
-                        icon: 'pi pi-fw pi-trash'
+                        label: 'Projekty',
+                        icon: 'pi pi-fw pi-plus',
+                        routerLink: '/projekty',
+                        
                     },
                     {
                         separator: true
@@ -45,15 +47,22 @@ export class MenubarComponent implements  OnInit{
                     }
                 ]
             },
-            {label: 'Osoby',
-            icon: 'pi pi-fw pi-peccil',
-            routerLink: ['/osoby']
+            {
+                label: 'Osoby',
+                icon: 'pi pi-fw pi-peccil',
+                routerLink: ['/osoby']
             },
-            {  label: 'Zestawienie danych',
-            icon: 'pi pi-fw pi-peccil',
-            routerLink: ['/zestawienie']
+            {
+                label: 'Zestawienie danych',
+                icon: 'pi pi-fw pi-peccil',
+                routerLink: ['/zestawienie']
 
 
+            },
+            {
+                label: 'Projekty',
+                icon: 'pi pi-fw pi-list',
+                routerLink: '/projekty',
             },
             {
                 label: 'Edit',
@@ -146,6 +155,6 @@ export class MenubarComponent implements  OnInit{
                 icon: 'pi pi-fw pi-power-off'
             }
         ];
-      }
+    }
 
 }

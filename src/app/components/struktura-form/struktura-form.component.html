@@ -1,19 +1,71 @@
 <p>struktura-form works!</p>
-
-<div class=" flex justify-content-center">
-    <p-tree class="w-full md:w-10rem" [value]="dataTree" [draggableNodes]="true" [droppableNodes]="true"
-        draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)">
-
-        <ng-template let-node pTemplate="default">
-            <span *ngIf="!node.isEditing">{{ node.label }}</span>
-            <input pInputText  *ngIf="node.isEditing" type="text" [(ngModel)]="node.label" (blur)="stopEditing(node)"
-                (keydown.enter)="stopEditing(node)" />
-             <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
-             <span *ngIf="czyLeaf(node)==false"> Samotny</span> 
-
-            <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "  *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
-            <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>
-        </ng-template>
-
-    </p-tree>
+<div pDraggable="items" class="draggable-box" pDroppable="items" (onDrop)="drop($event)" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd()"> <p>Dropbbb</p></div>
+<div  draggableScope="self" droppableScope="self" >
+  <li *ngFor="let product of dataTree" pDroppable="items" (onDrop)="drop($event)" class="p-2 border-round shadow-1" pDraggable="items" (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
+    {{product.data.name}}
+</li>
 </div>
+<div style="width: 100vw; height: 100vh; background: yellow;">
+  <as-split direction="vertical">
+    <as-split-area [size]="40">
+      <as-split direction="horizontal">
+        <as-split-area [size]="20">
+          <div class=" flex justify-content-left">
+
+            <!--Drzewko ze strukturą-->
+            <p-tree class="w-full md:w-30rem" [value]="dataTree" [draggableNodes]="true" [droppableNodes]="true"
+                draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)" >
+
+                <ng-template let-node pTemplate="default">
+                    <span *ngIf="!node.isEditing">{{ node.label }}</span>
+                    <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label"
+                        (blur)="stopEditing(node)" (keydown.enter)="stopEditing(node)" />
+                    <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
+                    <span *ngIf="czyLeaf(node)==false"> Samotny</span>
+
+                   <!-- <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
+                        *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
+                    <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>
+                   -->
+                </ng-template>
+
+            </p-tree>
+        </div>
+     
+    
+        </as-split-area>
+        <as-split-area [size]="80" >
+          <div pDraggable Ddroppable (onDrop)="drop($event)"> <p>RIGHT</p></div>
+         
+        </as-split-area>
+      </as-split>
+    </as-split-area>
+    <as-split-area [size]="60">
+      <div class=" flex justify-content-left">
+
+        <!--Drzewko ze strukturą-->
+        <p-tree class="w-full md:w-30rem" [value]="dataTree" [draggableNodes]="true" [droppableNodes]="true"
+            draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)" >
+
+            <ng-template let-node pTemplate="default">
+                <span *ngIf="!node.isEditing">{{ node.label }}</span>
+                <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label"
+                    (blur)="stopEditing(node)" (keydown.enter)="stopEditing(node)" />
+                <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
+                <span *ngIf="czyLeaf(node)==false"> Samotny</span>
+
+               <!-- <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
+                    *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
+                <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>
+               -->
+            </ng-template>
+
+        </p-tree>
+    </div>
+ 
+    </as-split-area>
+  </as-split>
+</div>
+
+          
+           
