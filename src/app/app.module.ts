@@ -36,6 +36,10 @@ import { SplitterModule } from 'primeng/splitter';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AngularSplitModule } from 'angular-split';
 import { DragDropModule } from 'primeng/dragdrop';
+import { ZarzadzanieAkcjaComponent } from './components/zarzadzanie-akcja/zarzadzanie-akcja.component';
+import { MapComponent } from './map/map.component';
+import { HttpClientModule } from '@angular/common/http';
+//import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 
 @NgModule({
@@ -49,6 +53,8 @@ import { DragDropModule } from 'primeng/dragdrop';
     SearchFilterPipe,
     SyncInfoComponent,
     ZarzadzanieProjektamiComponent,
+    ZarzadzanieAkcjaComponent,
+    MapComponent,
     
     
 
@@ -80,7 +86,9 @@ import { DragDropModule } from 'primeng/dragdrop';
     SplitterModule,
     ScrollPanelModule,
     AngularSplitModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule,
+    
     
     
    

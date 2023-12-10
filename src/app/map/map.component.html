@@ -1,0 +1,11 @@
+
+        <div >
+            <i  (click)="pokazDialog()" class="pi pi-window-maximize " style="display: block"></i>
+        </div>
+
+        <div (click)="locateUser()"><i class="pi pi-map-marker" style="font-size: 2rem"></i></div>
+        <div (click)="odswiezMape()"><i class="pi pi-map-marker" style="font-size: 2rem"></i></div>
+       
+        <div #map class="map-container" *ngIf="!error" ></div>
+        <p *ngIf="error">Error loading map: {{ error }}</p>
+

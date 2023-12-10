@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
 import { Observable, Subject } from 'rxjs';
+import PouchFind from 'pouchdb-find';
+PouchDB.plugin(PouchFind);
 
 @Injectable({
   providedIn: 'root'
