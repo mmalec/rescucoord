@@ -32,9 +32,9 @@
                   <span *ngIf="!node.isEditing">{{ node.label }}</span>
                   <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label"
                     (blur)="stopEditing(node)" (keydown.enter)="stopEditing(node)" />
-                  <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
+                 <!--  <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
                   <span *ngIf="czyLeaf(node)==false"> Samotny</span>
-                  <!--
+                 
                 <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
                   *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
                 <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>
@@ -71,8 +71,9 @@
           <span *ngIf="!node.isEditing">{{ node.label }}</span>
           <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label" (blur)="stopEditing(node)"
             (keydown.enter)="stopEditing(node)" />
+            <!--
           <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
-          <span *ngIf="czyLeaf(node)==false"> Samotny</span>
+          <span *ngIf="czyLeaf(node)==false"> Samotny</span> -->
 
           <!-- <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
                   *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
