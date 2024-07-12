@@ -10,6 +10,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AngularSplitModule } from 'angular-split';
 import { DragDropModule } from 'primeng/dragdrop';
+import { TabPanel, TabView, TabViewModule } from 'primeng/tabview';
 
 
 
@@ -38,7 +39,7 @@ drop(arg0: any) {
   zdarzenia: TreeNode[];
   jsonData: any[];
 
-  constructor(private fb: FormBuilder, private db: PouchdbService, ) { }
+  constructor(private fb: FormBuilder, private db: PouchdbService ) { }
 
 
   ngOnInit(): void {

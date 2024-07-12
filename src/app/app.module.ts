@@ -39,6 +39,7 @@ import { DragDropModule } from 'primeng/dragdrop';
 import { ZarzadzanieAkcjaComponent } from './components/zarzadzanie-akcja/zarzadzanie-akcja.component';
 import { MapComponent } from './map/map.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TabPanel, TabView, TabViewModule } from 'primeng/tabview';
 //import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 
@@ -88,7 +89,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularSplitModule,
     DragDropModule,
     HttpClientModule,
-    
+    TabViewModule
+      
     
     
    

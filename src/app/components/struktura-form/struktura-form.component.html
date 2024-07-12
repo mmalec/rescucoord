@@ -61,24 +61,50 @@
     <as-split-area [size]="60">
       <div class=" flex justify-content-left">
 
-        <!--Drzewko ze strukturą-->
+        <p-tabView>
+          <p-tabPanel header="Header I">
+            <!--Drzewko ze strukturą-->
         <p-tree #treeZdarzenia class="w-full md:w-30rem" [value]="dataTree" [draggableNodes]="true"
-          [droppableNodes]="true" draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)">
+        [droppableNodes]="true" draggableScope="self" droppableScope="self" (onNodeDrop)="onNodeDrop($event)">
 
-          <ng-template let-node pTemplate="default">
-            <span *ngIf="!node.isEditing">{{ node.label }}</span>
-            <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label" (blur)="stopEditing(node)"
-              (keydown.enter)="stopEditing(node)" />
-            <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
-            <span *ngIf="czyLeaf(node)==false"> Samotny</span>
+        <ng-template let-node pTemplate="default">
+          <span *ngIf="!node.isEditing">{{ node.label }}</span>
+          <input pInputText *ngIf="node.isEditing" type="text" [(ngModel)]="node.label" (blur)="stopEditing(node)"
+            (keydown.enter)="stopEditing(node)" />
+          <span *ngIf="czyLeaf(node)"> {{node.liczba_dzieci}}</span>
+          <span *ngIf="czyLeaf(node)==false"> Samotny</span>
 
-            <!-- <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
-                    *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
-                <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>-->
+          <!-- <p-button icon="pi pi-file-edit" [rounded]="true" [text]="true" severity="secondary "
+                  *ngIf="!node.isEditing" (click)="editNode(node)"></p-button>
+              <button *ngIf="czyLeaf(node)==false" (click)="editNode(node)">Kasuj</button>-->
 
-          </ng-template>
+        </ng-template>
 
-        </p-tree>
+      </p-tree>
+          </p-tabPanel>
+          <p-tabPanel header="Header II">
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+              rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+              explicabo. Nemo enim
+              ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+              qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="Header III">
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+              atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+              sunt in culpa
+              qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
+              expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+              minus.
+            </p>
+          </p-tabPanel>
+        </p-tabView>
+
+
+       
       </div>
 
     </as-split-area>
